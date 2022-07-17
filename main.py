@@ -16,7 +16,7 @@ class windows1:
     def __init__(self, master):
         self.master = master
         self.master.title("Pharmacy Management System")
-        self.master.geometry('1350x750+0+0')
+        self.master.geometry('1270x710+0+0')
         self.frame = Frame(self.master)
         self.frame.pack()
         
@@ -35,17 +35,17 @@ class windows1:
         self.Loginframe3 = Frame(self.frame, width=1000, height=200, bd=10, relief="groove")
         self.Loginframe3.grid(row=6, column=0, pady= 5)
         
-        self.button_reg = Button(self.Loginframe3,text = "Patient Registration Window", font=("arial", 15, "bold"), command= self.Registration_window)
+        self.button_reg = Button(self.Loginframe3,text = "Patient1 Registration Window", state= DISABLED, font=("arial", 15, "bold"), command= self.Registration_window)
         self.button_reg.grid(row=0, column=0, padx=10, pady=10)
         
-        self.button_reg = Button(self.Loginframe3,text = "Patient Registration Window", font=("arial", 15, "bold"), command= self.Hospital_window)
-        self.button_reg.grid(row=0, column=1, padx=10, pady=10)
+        self.button_hosp = Button(self.Loginframe3,text = "Patient2 Registration Window", state= DISABLED, font=("arial", 15, "bold"), command= self.Hospital_window)
+        self.button_hosp.grid(row=0, column=1, padx=10, pady=10)
         
-        self.button_reg = Button(self.Loginframe3,text = "Patient Registration Window", font=("arial", 15, "bold"), command= self.Dr_appoint_window)
-        self.button_reg.grid(row=1, column=0, padx=10, pady=10)
+        self.button_dr_app = Button(self.Loginframe3,text = "Patient3 Registration Window", state= DISABLED, font=("arial", 15, "bold"), command= self.Dr_appoint_window)
+        self.button_dr_app.grid(row=1, column=0, padx=10, pady=10)
         
-        self.button_reg = Button(self.Loginframe3,text = "Patient Registration Window", font=("arial", 15, "bold"), command= self.Medicine_stock)
-        self.button_reg.grid(row=1, column=1, padx=10, pady=10)
+        self.button_med_stock = Button(self.Loginframe3,text = "Patient4 Registration Window", state= DISABLED, font=("arial", 15, "bold"), command= self.Medicine_stock)
+        self.button_med_stock.grid(row=1, column=1, padx=10, pady=10)
         
         self.LabelUsername = Label(self.Loginframe1, text= "User Name", font = ("arial", 20, "bold"), bd= 3)
         self.LabelUsername.grid(row=0, column=0)
@@ -59,6 +59,51 @@ class windows1:
         self.textPassword = Entry(self.Loginframe1, font= ("arial", 20, "bold"), show="*", bd = 3, textvariable= self.Password)
         self.textPassword.grid(row= 1, column=1, padx= 40, pady= 15)
         
+        self.button_login = Button(self.Loginframe2, text="Login", width=20, font=("arial", 18,"bold"), command= self.login_system)
+        self.button_login.grid(row= 0, column= 0, padx= 10, pady= 10)
+        
+        self.button_reset = Button(self.Loginframe2, text="Reset", width=20, font=("arial", 18,"bold"), command= self.reset_btn)
+        self.button_reset.grid(row= 0, column= 3, padx= 10, pady= 10)
+
+        self.button_exit = Button(self.Loginframe2, text="Exit", width=20, font=("arial", 18,"bold"), command= self.exit_btn)
+        self.button_exit.grid(row= 0, column= 6, padx= 10, pady= 10)
+        
+    def login_system(self):
+        user = self.Username.get()
+        pswd = self.Password.get()
+
+        if (user == str("admin") and (pswd == str("admin"))):
+            self.button_reg.config(state= NORMAL)
+            self.button_hosp.config(state= NORMAL)
+            self.button_dr_app.config(state= NORMAL)
+            self.button_med_stock.config(state= NORMAL)
+            
+        else:
+            tkinter.messagebox.askokcancel("Pharmacy Management System", "Invalid User name or Password")
+            self.button_reg.config(state= DISABLED)
+            self.button_hosp.config(state= DISABLED)
+            self.button_dr_app.config(state= DISABLED)
+            self.button_med_stock.config(state= DISABLED)
+            
+            self.Username.set("")
+            self.Password.set("")
+            self.textUsername.focus()
+        
+    def reset_btn(self):
+        self.button_reg.config(state= DISABLED)
+        self.button_hosp.config(state= DISABLED)
+        self.button_dr_app.config(state= DISABLED)
+        self.button_med_stock.config(state= DISABLED)
+        
+        self.Username.set("")
+        self.Password.set("")
+        self.textUsername.focus()
+        
+    def exit_btn(self):
+        self.exit_btn = tkinter.messagebox.askyesno("Pharmacy Management System", "Are you sure ?")
+        if self.exit_btn > 0:
+            self.master.destroy()
+            return
         
     def Registration_window(self):
         self.newWindow= Toplevel(self.master)
@@ -80,7 +125,7 @@ class windows2:
     def __init__(self, master):
         self.master = master
         self.master.title("Patient Management System")
-        self.master.geometry('1350x750+0+0')
+        self.master.geometry('1270x710+0+0')
         self.frame = Frame(self.master)
         self.frame.pack()
 
@@ -88,7 +133,7 @@ class windows3:
     def __init__(self, master):
         self.master = master
         self.master.title("Hospital Management System")
-        self.master.geometry('1350x750+0+0')
+        self.master.geometry('1270x710+0+0')
         self.frame = Frame(self.master)
         self.frame.pack()
 
@@ -96,7 +141,7 @@ class windows4:
     def __init__(self, master):
         self.master = master
         self.master.title("Doctor Management System")
-        self.master.geometry('1350x750+0+0')
+        self.master.geometry('1270x710+0+0')
         self.frame = Frame(self.master)
         self.frame.pack()
         
@@ -104,7 +149,7 @@ class windows5:
     def __init__(self, master):
         self.master = master
         self.master.title("Medicine Management System")
-        self.master.geometry('1350x750+0+0')
+        self.master.geometry('1270x710+0+0')
         self.frame = Frame(self.master)
         self.frame.pack()
         
